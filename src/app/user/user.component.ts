@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-@Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
-  providers: [ UserService ]
-})
-export class UserComponent implements OnInit {
-  user: {name: string}
-  isLoggedIn = true;
-  constructor( private userService: UserService) {}
+import { DataService } from '../shared/data.service';
+  @Component({
+      selector: 'app-user',
+      templateUrl: './user.component.html',
+      styleUrls: ['./user.component.css'],
+      providers: [ UserService, DataService ]
+    })
+  export class UserComponent implements OnInit {
+      data: string;
+      user: {name: string}
+      isLoggedIn = true;
+      constructor( private userService: UserService, private dataService: DataService) {}
 
-  ngOnInit() {
-   this.user = this.userService.user;
+      ngOnInit() {
+      this.user = this.userService.user;
+      this.dataService.getDetails().then( (result: string) =>  this.data = result);
+      }
   }
-}
+
+

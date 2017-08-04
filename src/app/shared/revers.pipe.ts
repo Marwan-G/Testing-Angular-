@@ -1,9 +1,9 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe } from '@angular/core';
 
-@Pipe({
+@Pipe ({
     name: 'reverse'
 });
-export class ReversPipe {
+export class ReversePipe {
     transform(value: string) {
         return value.split('').reverse().join('');
     }
